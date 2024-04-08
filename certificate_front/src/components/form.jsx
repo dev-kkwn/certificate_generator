@@ -1,7 +1,7 @@
 import { useState } from "react";
 export function Forms() {
   const initialData = {
-    name: "",
+    Name: "",
     Date: "",
     Course_Name: "",
   };
@@ -12,6 +12,7 @@ export function Forms() {
       [e.target.name]: e.target.value,
     }));
   };
+
   const [formData, setFormData] = useState(initialData);
 
   const submitForm = (event) => {
@@ -19,6 +20,7 @@ export function Forms() {
     console.log(formData);
     setFormData(initialData);
   };
+
   return (
     <>
       <form action="" onSubmit={submitForm}>
@@ -29,15 +31,17 @@ export function Forms() {
           name="name"
           className="border border-green-600 p-5"
           onChange={handleChange}
+          value={formData.name}
         />
         <br />
         <label htmlFor="name">Date</label>
         <input
-          type="text"
+          type="date"
           id="date"
           name="date"
           className="border border-green-600 p-5"
           onChange={handleChange}
+          value={formData.Date}
         />
         <br />
         <label htmlFor="name">Course Name</label>
@@ -47,8 +51,10 @@ export function Forms() {
           name="course_name"
           className="border border-green-600 p-5"
           onChange={handleChange}
+          value={formData.Course_Name}
         />
         <br />
+        <button type="submit">submit</button>
       </form>
     </>
   );
