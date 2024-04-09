@@ -10,7 +10,7 @@ export function Forms() {
     const handleChange = (e) => {
     setFormData((prevstate) => ({
       ...prevstate,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     }));
   };
 
@@ -26,7 +26,7 @@ export function Forms() {
   useEffect(() => {
     // const url = "http://localhost:3000/student"
     // Axios.post(`${url}`,formData).then((res) => console.log(res.formData)).catch((error) => console.error("error", error));
-},[])
+},[formData])
 
 
   return (
