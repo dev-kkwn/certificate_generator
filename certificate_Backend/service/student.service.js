@@ -11,28 +11,27 @@ const studentEntry = async (req) => {
   }
 };
 
-const Find = async (req)=>{
-    let values = await Student.find();
-    if(!values){
-        return null
-    }else{
-        return values;
-    }
-}
-
-const FindByName = async (req) => {
-  let name = req.query;
-  const findUserByName = await Student.findOne(name);
-  console.log("first name enter",findUserByName);
-  if (!findUserByName) {
+const Find = async (req) => {
+  let values = await Student.find();
+  if (!values) {
     return null;
   } else {
-    return findUserByName;
+    return values;
+  }
+};
+
+const FindById = async (req) => {
+  let id = req.params.id;
+  const findUserByid = await Student.findOne({_id : id});
+  if (!findUserByid) {
+    return null;
+  } else {
+    return findUserByid;
   }
 };
 
 module.exports = {
   studentEntry,
   Find,
-  FindByName,
+  FindById,
 };
