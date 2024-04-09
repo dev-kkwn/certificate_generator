@@ -4,7 +4,18 @@ const StudentServices = require("../service/student.service");
 const creation = async (req, res) => {
   let data = await StudentServices.studentEntry(req);
   if (data != null) {
-    res.status(201).send(data);
+    let details = {
+      _id: data._id,
+      name: data.name,
+      course_data: data.course_data,
+      duration: data.duration,
+      certificate_no: data.certificate_no,
+    };
+    if (!details) {
+      res.status(401).send({ message: "user not found" });
+    } else {
+      res.status(201).send({data: data, data:details});
+    }
   } else {
     res.status(401).send({ message: "Student data is missing" });
   }
@@ -22,13 +33,13 @@ const Table = async (req, res) => {
 const FindName = async (req, res) => {
   let name = await StudentServices.FindByName(req);
   if (name != null) {
-    let details = {
-      _id: name._id,
-      name: name.name,
-      course_name: name.course_name,
-      duration: name.duration,
-      certificate_no: name.certificate_no,
-    };
+    // let details = {
+    //   _id: name._id,
+    //   name: name.name,
+    //   course_name: name.course_name,
+    //   duration: name.duration,
+    //   certificate_no: name.certificate_no,
+    // };
     if (!name) {
       res.status(401).send({ message: "user not found" });
     } else {
@@ -38,7 +49,7 @@ const FindName = async (req, res) => {
     res.status(401).send({ message: "user not found" });
   }
 };
-
+ 
 module.exports = {
   creation,
   Table,
