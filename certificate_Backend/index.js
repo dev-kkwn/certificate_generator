@@ -2,9 +2,11 @@ const bodyParser = require("body-parser");
 const express = require("express");
 const mongoose = require("mongoose");
 const Routers = require("./router/index");
+const cors =require("cors")
 
 let app = express();
 
+app.use(cors());
 let PORT = 8001;
 
 app.use(bodyParser.urlencoded({ extended: true }));

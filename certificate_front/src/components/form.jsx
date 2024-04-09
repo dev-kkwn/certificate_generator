@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { Axios } from "axios";
+import  Axios  from "axios";
 export function Forms() {
 
   const apiUrl = process.env.REACT_APP_API_URL;
+  
   const initialData = {
     name: "",
     DOB: "",
@@ -27,7 +28,7 @@ export function Forms() {
     // setFormData(initialData);
     // const url = "http://localhost:3000/student"
     // Axios.post(`${url}`,formData).then((res) => console.log(res.formData)).catch((error) => console.error("error", error));
-    Axios.post(`${apiUrl}/student`, formData)
+    Axios.post(`${apiUrl}/studentData/entry`, formData)
       .then((res) => console.log(res.data))
       .catch((err) => console.log(err));
   };
