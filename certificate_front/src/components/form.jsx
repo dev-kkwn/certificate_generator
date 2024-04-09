@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import  Axios  from "axios";
+import { Link } from "react-router-dom";
 export function Forms() {
 
   const apiUrl = process.env.REACT_APP_API_URL;
@@ -117,9 +118,9 @@ export function Forms() {
             />
             <br />
             <div className="text-center mt-5">
-              <button type="submit" className="bg-pink-600 rounded-md p-1 text-white">
+              <Link path="/certificate"> <button type="submit" className="bg-pink-600 rounded-md p-1 text-white">
                 Generate Certificate
-              </button>
+              </button> </Link>
             </div>
           </form>
         </div>
