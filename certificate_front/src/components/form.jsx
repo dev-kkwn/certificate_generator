@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Axios } from "axios";
 export function Forms() {
   const initialData = {
     Name: "",
@@ -6,7 +7,7 @@ export function Forms() {
     Course_Name: "",
   };
 
-  const handleChange = (e) => {
+    const handleChange = (e) => {
     setFormData((prevstate) => ({
       ...prevstate,
       [e.target.name]: e.target.value,
@@ -15,31 +16,38 @@ export function Forms() {
 
   const [formData, setFormData] = useState(initialData);
 
-  const submitForm = (event) => {
-    event.preventDefault();
+  const submitForm = (e) => {
+    e.preventDefault();
     console.log(formData);
     setFormData(initialData);
+    // const url = "http://localhost:3000/student"
+    // Axios.post(`${url}`,formData).then((res) => console.log(res.formData)).catch((error) => console.error("error", error));
   };
+  useEffect(() => {
+    // const url = "http://localhost:3000/student"
+    // Axios.post(`${url}`,formData).then((res) => console.log(res.formData)).catch((error) => console.error("error", error));
+},[])
+
 
   return (
     <>
-      <form action="" onSubmit={submitForm}>
+      <form onSubmit={submitForm}>
         <label htmlFor="name">name</label>
         <input
           type="text"
           id="name"
-          name="name"
-          className="border border-green-600 p-5"
+          name="Name"
+          className="border border-green-600 p-1"
           onChange={handleChange}
-          value={formData.name}
+          value={formData.Name}
         />
         <br />
         <label htmlFor="name">Date</label>
         <input
           type="date"
           id="date"
-          name="date"
-          className="border border-green-600 p-5"
+          name="Date"
+          className="border border-green-600 p-1"
           onChange={handleChange}
           value={formData.Date}
         />
@@ -48,13 +56,13 @@ export function Forms() {
         <input
           type="text"
           id="course_name"
-          name="course_name"
-          className="border border-green-600 p-5"
+          name="Course_Name"
+          className="border border-green-600 p-1"
           onChange={handleChange}
           value={formData.Course_Name}
         />
         <br />
-        <button type="submit">submit</button>
+        <button type="submit" className="bg-blue-600">submit</button>
       </form>
     </>
   );
