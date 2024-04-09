@@ -1,6 +1,7 @@
 const bodyParser = require("body-parser");
 const express = require("express");
 const mongoose = require("mongoose");
+const Routers = require("./router/index");
 
 let app = express();
 
@@ -17,6 +18,8 @@ mongoose
   .catch((e) => {
     console.log(e);
   });
+
+app.use(Routers);
 
 app.listen(PORT, () => {
   console.log(`server is running on the port ${PORT}`);

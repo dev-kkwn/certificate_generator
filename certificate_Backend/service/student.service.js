@@ -1,16 +1,38 @@
-const {Student} = require("../model/student.model")
+const { Student } = require("../model/student.model");
 
+const studentEntry = async (req) => {
+  let body = req.body;
+  let creation = await Student.create(body);
+  console.log(creation);
+  if (!creation) {
+    return null;
+  } else {
+    return creation;
+  }
+};
 
-const studentEntry = async (req)=>{
-    let body = req.params.body;
-    let studentCreate = await Student.create(body);
-    if(!studentCreate){
-        return null;
+const Find = async (req)=>{
+    let values = await Student.find();
+    if(!values){
+        return null
     }else{
-        return studentCreate;
+        return values;
     }
 }
 
+const FindByName = async (req) => {
+  let name = req.query;
+  const findUserByName = await Student.findOne(name);
+  console.log("first name enter",findUserByName);
+  if (!findUserByName) {
+    return null;
+  } else {
+    return findUserByName;
+  }
+};
+
 module.exports = {
-    studentEntry,
-}
+  studentEntry,
+  Find,
+  FindByName,
+};
