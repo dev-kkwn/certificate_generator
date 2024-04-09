@@ -2,13 +2,15 @@ import logo from "./logo.svg";
 import "./App.css";
 import { Forms } from "./components/form";
 import { Route, Routes } from "react-router-dom";
+import Certificate from "./components/certificate";
 
 function App() {
   return (
     <>
-      <Forms />
+      {/* <Forms /> */}
+      <Certificate />
       <Routes>
-        <Route path="certificate" exact element={<Certificate />} />
+        {/* <Route path="certificate" exact element={<Certificate />} /> */}
       </Routes>
     </>
   );
