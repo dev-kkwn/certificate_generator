@@ -8,12 +8,14 @@ import ceosign from "../assets/Signature-removebg-preview.png";
 import mdsign from "../assets/WhatsApp_Image_2024-04-12_at_11.31.41_AM-removebg-preview.png";
 
 function Certificate() {
-  const [inputData, SetInputData] = useState({
-    name: "",
-    course_name: "",
-    duration: "",
-    certificate_no: "",
-  });
+  // const [inputData, SetInputData] = useState({
+  //   name: "",
+  //   course_name: "",
+  //   duration: "",
+  //   certificate_no: "",
+  // });
+
+const [inputData,SetInputData]=useState([])
 
   const apiUrl = process.env.REACT_APP_API_URL;
 
@@ -27,7 +29,7 @@ function Certificate() {
       .get(`${apiUrl}/studentData/entry`, inputData)
       .then((res) => SetInputData(res.data))
       .catch((err) => console.log(err));
-  }, [apiUrl]);
+  }, []);
 
   return (
     <>

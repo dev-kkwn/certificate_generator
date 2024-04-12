@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
-import  Axios  from "axios";
+import Axios from "axios";
 import { Link } from "react-router-dom";
 export function Forms() {
-
   const apiUrl = process.env.REACT_APP_API_URL;
-  
+
   const initialData = {
     name: "",
     DOB: "",
@@ -20,7 +19,6 @@ export function Forms() {
       [e.target.name]: e.target.value,
     }));
   };
-
 
   const [formData, setFormData] = useState(initialData);
 
@@ -39,7 +37,7 @@ export function Forms() {
     <>
       <div className="flex justify-center items-center h-[100vh] w-full">
         <div className="shadow-2xl p-8 w-2/4">
-          <form onSubmit={submitForm}>
+          <form onSubmit>
             <label htmlFor="Name" className="font-bold">
               Student Name:
             </label>
@@ -119,9 +117,13 @@ export function Forms() {
             />
             <br />
             <div className="text-center mt-5">
-              <button type="submit" className="bg-pink-600 rounded-md p-1 text-white">
-              <Link to="/certificate"> Generate Certificate </Link>
-              </button> 
+              <button
+                type="submit"
+                onClick={submitForm}
+                className="bg-pink-600 rounded-md p-1 text-white"
+              >
+                <Link to="/certificate"> Generate Certificate </Link>
+              </button>
             </div>
           </form>
         </div>
