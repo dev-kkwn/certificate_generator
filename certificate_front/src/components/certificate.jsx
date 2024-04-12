@@ -6,6 +6,7 @@ import yglobaliso from "../assets/Whytap course completion certificate-06.png";
 import ygloballogo from "../assets/whyglobal-logo-services-02.png";
 import ceosign from "../assets/Signature-removebg-preview.png";
 import mdsign from "../assets/WhatsApp_Image_2024-04-12_at_11.31.41_AM-removebg-preview.png";
+import { useParams } from "react-router-dom";
 
 function Certificate() {
   // const [inputData, SetInputData] = useState({
@@ -14,6 +15,7 @@ function Certificate() {
   //   duration: "",
   //   certificate_no: "",
   // });
+  const { id } = useParams();
 
 const [inputData,SetInputData]=useState([])
 
