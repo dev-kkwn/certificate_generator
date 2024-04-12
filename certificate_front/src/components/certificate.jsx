@@ -4,8 +4,8 @@ import certificateLogo from "../assets/Whytap course completion certificate-04.p
 import whyLogo from "../assets/Whytap course completion certificate-05.png";
 import yglobaliso from "../assets/Whytap course completion certificate-06.png";
 import ygloballogo from "../assets/whyglobal-logo-services-02.png";
-import ceosign from "../assets/Signature-removebg-preview.png"
-import mdsign from "../assets/WhatsApp_Image_2024-04-12_at_11.31.41_AM-removebg-preview.png"
+import ceosign from "../assets/Signature-removebg-preview.png";
+import mdsign from "../assets/WhatsApp_Image_2024-04-12_at_11.31.41_AM-removebg-preview.png";
 
 function Certificate() {
   const [inputData, SetInputData] = useState({
@@ -44,13 +44,14 @@ function Certificate() {
             <h1 className="text-2xl text-cente my-10 text-yellow-600 font-semibold">
               Why Tap
             </h1>
-            <div className="bg-pink-700 w-96 p-2 text-white text-3xl text-center ">
-              <span className="">Kavin Kumar S  { inputData.name}</span>
+            <div className="bg-pink-700 w-96 p-2 text-white text-3xl text-center uppercase">
+              <span className="">{inputData.name}</span>
             </div>
             {/* <div className="text-xl my-6">Certificate Number</div> */}
             {/* <div className="text-xl my-6">6 Months</div> */}
             <div className="text-xl my-6 text-red-800">
               has been awarded the Post Graduate certificate with Merit in{" "}
+              {inputData.course_name}
             </div>
             <div className="text-xl my-6">Months of awarding date</div>
             {/* <div className="text-xl my-6">FSD-Full Stack Development</div> */}
@@ -61,7 +62,7 @@ function Certificate() {
               {/* MD text */}
               <div className="md-parent">
                 {/* <div className="text-2xl text-center">Signature</div> */}
-                <img src={mdsign} alt="MDsign"  className="w-3/4"/>
+                <img src={mdsign} alt="MDsign" className="w-3/4" />
                 <hr className="border border-black" />
                 <div className="text">
                   <p className="font-bold text-xl">Bindhu Selvakumar</p>
@@ -97,7 +98,9 @@ function Certificate() {
               {/* </div> */}
             </div>
           </div>
-          <h1 className="text-pink-700 font-semibold">REG.NO:WHYTAP113</h1>
+          <h1 className="text-pink-700 font-semibold">
+            REG.No:{inputData.certificate_no}
+          </h1>
         </div>
         {/* </div> */}
       </section>
