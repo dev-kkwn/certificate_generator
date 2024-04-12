@@ -6,7 +6,7 @@ const creation = async (req, res) => {
   if (data == null) {
     res.status(401).send({ message: "Student data is already exists" });
   } else {
-    res.status(201).send(data);
+    res.status(201).send({id:data._id});
   }
 };
 
@@ -14,7 +14,7 @@ const certificateGeneration = async (req, res) => {
   let name = await StudentServices.FindById(req);
   if (name != null) {
     let details = {
-      _id: name._id,
+      // _id: name._id,
       name: name.name,
       course_name: name.course_name,
       duration: name.duration,
