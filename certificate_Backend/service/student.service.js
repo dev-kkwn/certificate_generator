@@ -1,4 +1,6 @@
 const { Student } = require("../model/student.model");
+const PDFkit = require("pdfkit");
+const fs = require("fs");
 
 const studentEntry = async (req) => {
   let body = req.body;
@@ -31,7 +33,6 @@ const Find = async (req) => {
   }
 };
 
-
 const FindName = async (req) => {
   let name = req.query;
   let value = await Student.findOne(name);
@@ -52,6 +53,34 @@ const Delete = async (req) => {
     return profile;
   }
 };
+
+//pdf generator....
+const doc = new PDFkit({
+  layout: "portrait",
+});
+
+const name = "kaushik muruganandham",
+  duration = "December";
+
+doc.pipe(fs.createWriteStream(`${name} certificate.pdf`));
+
+doc.image("assets/Minithasri_page-0001.jpg", 25, 0, { width: 560 });
+
+doc.fontSize(25).fillColor("white").text(name, 65, 370, { align: "center" });
+
+doc
+  .fontSize(14)
+  .fillColor("#5B213C")
+  .text(
+    `has been awarded the Post Graduate certificate with Merit in Full Stack Development`,
+    160,
+    440,
+    { align: "center", width: 300 }
+  );
+
+doc.fillColor("#5B213C").fontSize(14).text(`${duration} 2023`,70,500,{align:"center"});
+
+doc.end();
 
 module.exports = {
   studentEntry,
