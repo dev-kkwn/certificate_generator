@@ -110,7 +110,7 @@ export function Forms() {
             </label>
             <br />
             <input
-              type="number"
+              type="text"
               id="Certificate_Number"
               name="certificate_no"
               className="border border-black p-1 rounded-md w-full"
@@ -119,9 +119,9 @@ export function Forms() {
             />
             <br />
             <div className="text-center mt-5">
-              <Link path="/certificate"> <button type="submit" className="bg-pink-600 rounded-md p-1 text-white">
-                Generate Certificate
-              </button> </Link>
+              <button type="submit" className="bg-pink-600 rounded-md p-1 text-white">
+              <Link to="/certificate"> Generate Certificate </Link>
+              </button> 
             </div>
           </form>
         </div>

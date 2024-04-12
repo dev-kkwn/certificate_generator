@@ -7,10 +7,9 @@ import Certificate from "./components/certificate";
 function App() {
   return (
     <>
-      {/* <Forms /> */}
-      <Certificate />
       <Routes>
-        {/* <Route path="certificate" exact element={<Certificate />} /> */}
+        <Route path="/" exact element={<Forms />} />
+        <Route path="/certificate" exact element={<Certificate />} />
       </Routes>
     </>
   );
