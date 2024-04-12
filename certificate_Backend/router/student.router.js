@@ -8,5 +8,4 @@ router.route("/find").get(studentController.Table);
 router.route("/findname").get(studentController.FindByName);
 router.route("/remove/:id").delete(studentController.ProfileDelete);
 
-
 module.exports = router;
