@@ -3,11 +3,9 @@ const { Student } = require("../model/student.model");
 const studentEntry = async (req) => {
   let body = req.body;
   let certify = body.certificate_no;
-  console.log("certificate", certify);
   let checkId = await Student.findOne({ certificate_no: certify });
   if (!checkId) {
     let creation = await Student.create(body);
-    console.log(creation);
     return creation;
   } else {
     return null;
