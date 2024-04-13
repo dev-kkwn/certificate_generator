@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Axios from "axios";
+import axios from "axios";
 import { Link } from "react-router-dom";
 export function Forms() {
   const apiUrl = process.env.REACT_APP_API_URL;
@@ -22,16 +22,27 @@ export function Forms() {
 
   const [formData, setFormData] = useState(initialData);
 
-  const submitForm = (e) => {
+  const submitForm = async (e) => {
     e.preventDefault();
     console.log(formData);
-    // setFormData(initialData);
-    // const url = "http://localhost:3000/student"
-    // Axios.post(`${url}`,formData).then((res) => console.log(res.formData)).catch((error) => console.error("error", error));
-    Axios.post(`${apiUrl}/studentData/entry`, formData)
+    // localStorage.setItem("id", submitForm.data.id);
+    await axios.post(`${apiUrl}/studentData/entry`, formData)
       .then((res) => console.log(res.data))
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err,"error posting"));
   };
+
+
+  // const submitForm = (e) => {
+  //   try {
+  //     e.preventDefault();
+  //     const response = axios.post(`${apiUrl}/studentData/entry`, formData)
+  //     const mongoId = response.data.id;
+  //     localStorage.setItem("mongoId", mongoId)
+  //     return mongoId
+  //   } catch (error) {
+  //     console.error("error",error);
+  //   }
+  // }
 
   return (
     <>

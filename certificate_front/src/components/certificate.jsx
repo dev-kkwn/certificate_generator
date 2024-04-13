@@ -17,7 +17,7 @@ function Certificate() {
   // });
   const { id } = useParams();
 
-const [inputData,SetInputData]=useState([])
+  const [inputData, SetInputData] = useState(null);
 
   const apiUrl = process.env.REACT_APP_API_URL;
 
@@ -26,11 +26,16 @@ const [inputData,SetInputData]=useState([])
   //   SetInputData({ ...inputData, [name]: value });
   // };
 
+  // useEffect(() => {
+  //   axios
+  //     .get(`${apiUrl}/studentData/entry/${localStorage.getItem("mongoId")}`, inputData)
+  //     .then((res) => SetInputData(res.data))
+  //     .catch((err) => console.log(err));
+  // }, []);
+
   useEffect(() => {
-    axios
-      .get(`${apiUrl}/studentData/entry`, inputData)
-      .then((res) => SetInputData(res.data))
-      .catch((err) => console.log(err));
+    SetInputData(axios.get(`${apiUrl}/studentData/entry`).inputData);
+    console.log("error receiving");
   }, []);
 
   return (
@@ -49,12 +54,13 @@ const [inputData,SetInputData]=useState([])
               Why Tap
             </h1>
             <div className="bg-pink-700 w-96 p-2 text-white text-3xl text-center uppercase">
-              <span className="">{inputData.name}</span>
+              <span className="">{ inputData.name}</span>
             </div>
+            
             {/* <div className="text-xl my-6">Certificate Number</div> */}
             {/* <div className="text-xl my-6">6 Months</div> */}
             <div className="text-xl my-6 text-red-800">
-              has been awarded the Post Graduate certificate with Merit in{" "}
+              has been awarded the Post Graduate certificate with Merit in
               {inputData.course_name}
             </div>
             <div className="text-xl my-6">Months of awarding date</div>
