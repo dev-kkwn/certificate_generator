@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 export function Forms() {
   const apiUrl = process.env.REACT_APP_API_URL;
 
@@ -12,7 +12,9 @@ export function Forms() {
     mobile_no: "",
     certificate_no: "",
   };
-
+  // const { id } = useParams();
+  const [formData, setFormData] = useState(initialData);
+ 
   const handleChange = (e) => {
     setFormData((prevstate) => ({
       ...prevstate,
@@ -20,18 +22,21 @@ export function Forms() {
     }));
   };
 
-  const [formData, setFormData] = useState(initialData);
-
-  const submitForm = async (e) => {
+  const submitForm = (e) => {
     e.preventDefault();
     console.log(formData);
-    // localStorage.setItem("id", submitForm.data.id);
-    await axios.post(`${apiUrl}/studentData/entry`, formData)
-      .then((res) => console.log(res.data))
-      .catch((err) => console.log(err,"error posting"));
+    //localStorage.setItem(formData.certificate_no);
+   // console.log(id, "hhhh");
+    axios
+      .post(`${apiUrl}/studentData/entry`, formData)
+      .then((res) => {
+        localStorage.setItem("id", res.data.id);
+        //console.log(res.dataid);
+      })
+      .catch((err) => console.log(err, "error posting"));
   };
-
-
+  const id = localStorage.getItem("id");
+  console.log("id", id);
   // const submitForm = (e) => {
   //   try {
   //     e.preventDefault();
@@ -133,7 +138,8 @@ export function Forms() {
                 onClick={submitForm}
                 className="bg-pink-600 rounded-md p-1 text-white"
               >
-                <Link to="/certificate"> Generate Certificate </Link>
+                Generate Certificate
+                {/* <Link to="/certificate/}"> Generate Certificate </Link> */}
               </button>
             </div>
           </form>

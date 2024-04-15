@@ -9,7 +9,7 @@ function App() {
     <>
       <Routes>
         <Route path="/" exact element={<Forms />} />
-        <Route path="/certificate" exact element={<Certificate />} />
+        <Route path="/certificate/:id" exact element={<Certificate />} />
       </Routes>
     </>
   );
