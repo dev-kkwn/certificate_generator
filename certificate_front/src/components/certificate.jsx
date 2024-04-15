@@ -34,7 +34,7 @@ function Certificate() {
   // }, []);
 
   useEffect(() => {
-    SetInputData(axios.get(`${apiUrl}/studentData/entry`).inputData);
+    SetInputData(axios.get(`${apiUrl}/studentData/${localStorage.getItem("id")}`));
     console.log("error receiving");
   }, []);
 
