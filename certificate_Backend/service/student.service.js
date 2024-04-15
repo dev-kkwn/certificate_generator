@@ -59,7 +59,7 @@ const doc = new PDFkit({
   layout: "portrait",
 });
 
-const name = "kaushik muruganandham",
+const name = "kaushik",
   duration = "December";
 
 doc.pipe(fs.createWriteStream(`${name} certificate.pdf`));
