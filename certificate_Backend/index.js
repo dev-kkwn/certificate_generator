@@ -7,6 +7,7 @@ const cors =require("cors")
 let app = express();
 
 app.use(cors());
+
 let PORT = 8001;
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -20,6 +21,8 @@ mongoose
   .catch((e) => {
     console.log(e);
   });
+
+app.use(express.static('public'));
 
 app.use(Routers);
 

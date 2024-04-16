@@ -31,8 +31,11 @@ const studentSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    profile: {
+      type: String,
+    },
     active: {
-      type : Boolean,
+      type: Boolean,
       default: true,
     },
   },

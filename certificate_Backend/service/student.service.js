@@ -14,13 +14,24 @@ const studentEntry = async (req) => {
   }
 };
 
-const FindById = async (req) => {
+const PdfGen = async (req) => {
   let id = req.params.id;
   const findUserByid = await Student.findById(id);
   if (!findUserByid) {
     return null;
   } else {
-    return findUserByid;
+    let details = {
+      // _id: name._id,
+      name: findUserByid.name,
+      course_name: findUserByid.course_name,
+      duration: findUserByid.duration,
+      certificate_no: findUserByid.certificate_no,
+    };
+    if (!details) {
+      return null;
+    } else {
+      return details;
+    }
   }
 };
 
@@ -55,37 +66,66 @@ const Delete = async (req) => {
 };
 
 //pdf generator....
-const doc = new PDFkit({
-  layout: "portrait",
-});
+// const doc = new PDFkit({
+//   layout: "portrait",
+//   size: "a3",
+// });
 
-const name = "kaushik",
-  duration = "December";
+// const name = "Kavin Kumar",
+//   duration = "December",
+//   certify = "WHYTAP0011";
 
-doc.pipe(fs.createWriteStream(`${name} certificate.pdf`));
+// doc.pipe(fs.createWriteStream(`${name} certificate.pdf`));
 
-doc.image("assets/Minithasri_page-0001.jpg", 25, 0, { width: 560 });
+// doc.image("assets/Minithasri_page-0001.jpg", 0, 0, { width: 840 });
 
-doc.fontSize(25).fillColor("white").text(name, 65, 370, { align: "center" });
+// doc.fontSize(32).fillColor("white").text(name, 330, 558);
 
-doc
-  .fontSize(14)
-  .fillColor("#5B213C")
-  .text(
-    `has been awarded the Post Graduate certificate with Merit in Full Stack Development`,
-    160,
-    440,
-    { align: "center", width: 300 }
-  );
+// doc
+//   .fontSize(20)
+//   .fillColor("#5B213C")
+//   .text(
+//     `has been awarded the Post Graduate certificate with Merit in Full Stack Development`,
+//     205,
+//     660,
+//     { align: "center", width: 440 }
+//   );
 
-doc.fillColor("#5B213C").fontSize(14).text(`${duration} 2023`,70,500,{align:"center"});
+// doc
+//   .fillColor("#5B213C")
+//   .fontSize(20)
+//   .text(`${duration} 2023`, 65, 740, { align: "center" });
 
-doc.end();
+// doc
+//   .fillColor("#5B213C")
+//   .fontSize(12)
+//   .text(`Reg No: ${certify}`,70,1100, { align: "right" });
+
+// doc.end();
+
+const profile = async (req) => {
+  if (req.file) {
+    let id = req.params.id;
+    let findUser = await Student.findById(id);
+    if (!findUser) {
+      return null;
+    } else {
+      let path = "/certificate/" + req.file.filename;
+      findUser = await Student.findByIdAndUpdate(
+        { _id: id },
+        { profile: path },
+        { new: true }
+      );
+      return findUser;
+    }
+  }
+};
 
 module.exports = {
   studentEntry,
   Find,
-  FindById,
+  PdfGen,
   FindName,
   Delete,
+  profile,
 };
