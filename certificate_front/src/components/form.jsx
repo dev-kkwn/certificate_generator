@@ -37,17 +37,7 @@ export function Forms() {
   };
   const id = localStorage.getItem("id");
   console.log("id", id);
-  // const submitForm = (e) => {
-  //   try {
-  //     e.preventDefault();
-  //     const response = axios.post(`${apiUrl}/studentData/entry`, formData)
-  //     const mongoId = response.data.id;
-  //     localStorage.setItem("mongoId", mongoId)
-  //     return mongoId
-  //   } catch (error) {
-  //     console.error("error",error);
-  //   }
-  // }
+ 
 
   return (
     <>
