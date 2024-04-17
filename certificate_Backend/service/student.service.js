@@ -27,6 +27,43 @@ const PdfGen = async (req) => {
       duration: findUserByid.duration,
       certificate_no: findUserByid.certificate_no,
     };
+    const doc = new PDFkit({
+      layout: "portrait",
+      size: "a3",
+    });
+
+    // const name = "Kavin Kumar",
+    //   duration = "December",
+    //   certify = "WHYTAP0011";
+
+    doc.pipe(fs.createWriteStream(`${details.name} certificate.pdf`));
+
+    doc.image("assets/Minithasri_page-0001.jpg", 0, 0, { width: 840 });
+
+    doc.fontSize(32).fillColor("white").text(name, 330, 558);
+
+    doc
+      .fontSize(20)
+      .fillColor("#5B213C")
+      .text(
+        `has been awarded the Post Graduate certificate with Merit in ${details.course_name} Development`,
+        205,
+        660,
+        { align: "center", width: 440 }
+      );
+
+    doc
+      .fillColor("#5B213C")
+      .fontSize(20)
+      .text(`${details.duration} 2023`, 65, 740, { align: "center" });
+
+    doc
+      .fillColor("#5B213C")
+      .fontSize(12)
+      .text(`Reg No: ${details.certificate_no}`, 70, 1100, { align: "right" });
+
+    doc.end();
+
     if (!details) {
       return null;
     } else {

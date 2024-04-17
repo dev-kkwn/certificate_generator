@@ -5,8 +5,7 @@ const FileStore = multer.diskStorage({
     cb(null, "./public/certificate");
   },
   filename: function (req, file, cb) {
-    const uniqueSuffix = "certificate";
-    cb(null, uniqueSuffix + file.originalname);
+    cb(null, file.originalname);
   },
 });
 
