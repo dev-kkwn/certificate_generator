@@ -128,8 +128,8 @@ export function Forms() {
                 onClick={submitForm}
                 className="bg-pink-600 rounded-md p-1 text-white"
               >
-                Generate Certificate
-                {/* <Link to="/certificate/}"> Generate Certificate </Link> */}
+                {/* Generate Certificate */}
+                <Link to="/certificate"> Generate Certificate </Link>
               </button>
             </div>
           </form>

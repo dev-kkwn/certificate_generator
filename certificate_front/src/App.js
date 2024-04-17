@@ -8,11 +8,11 @@ import { Table } from "./components/table";
 function App() {
   return (
     <>
-      {/* <Routes>
+      <Routes>
         <Route path="/" exact element={<Forms />} />
-        <Route path="/certificate/:id" exact element={<Certificate />} />
-      </Routes> */}
-      <Table/>
+        <Route path="/certificate" exact element={<Table />} />
+      </Routes>
+      {/* <Table/> */}
     </>
   );
 }
