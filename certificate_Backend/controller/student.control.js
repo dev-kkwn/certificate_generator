@@ -31,8 +31,7 @@ const Table = async (req, res) => {
 const FindByName = async (req, res) => {
   let studentName = await StudentServices.FindName(req);
   if (studentName != null) {
-    console.log(studentName.profile);
-    res.status(201).send({studentName,file:studentName.profile});
+    res.status(201).send(studentName);
   } else {
     res.status(401).send({ message: "UserName not exists" });
   }
