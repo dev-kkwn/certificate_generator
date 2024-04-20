@@ -1,6 +1,7 @@
 const { Student } = require("../model/student.model");
 const PDFkit = require("pdfkit");
 const fs = require("fs");
+const path = require("path");
 
 const studentEntry = async (req) => {
   let body = req.body;
@@ -21,7 +22,6 @@ const PdfGen = async (req) => {
     return null;
   } else {
     let details = {
-      // _id: name._id,
       name: findUserByid.name,
       course_name: findUserByid.course_name,
       duration: findUserByid.duration,
@@ -32,21 +32,25 @@ const PdfGen = async (req) => {
       size: "a3",
     });
 
-    // const name = "Kavin Kumar",
-    //   duration = "December",
-    //   certify = "WHYTAP0011";
-
-    doc.pipe(fs.createWriteStream(`${details.name} certificate.pdf`));
+    const pdfpath = path.join(
+      "./public/certificate",
+      `${details.name} certificate.pdf`
+    );
+    
+    doc.pipe(fs.createWriteStream(pdfpath));
 
     doc.image("assets/Minithasri_page-0001.jpg", 0, 0, { width: 840 });
 
-    doc.fontSize(32).fillColor("white").text(name, 330, 558);
+    doc
+      .fontSize(32)
+      .fillColor("white")
+      .text(`${details.name}`, 220, 558, { width: 400, align: "center" });
 
     doc
       .fontSize(20)
       .fillColor("#5B213C")
       .text(
-        `has been awarded the Post Graduate certificate with Merit in ${details.course_name} Development`,
+        `has been awarded the Post Graduate certificate with Merit in ${details.course_name} `,
         205,
         660,
         { align: "center", width: 440 }

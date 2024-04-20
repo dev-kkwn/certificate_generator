@@ -14,7 +14,7 @@ export function Forms() {
   };
   // const { id } = useParams();
   const [formData, setFormData] = useState(initialData);
- 
+
   const handleChange = (e) => {
     setFormData((prevstate) => ({
       ...prevstate,
@@ -26,18 +26,23 @@ export function Forms() {
     e.preventDefault();
     console.log(formData);
     //localStorage.setItem(formData.certificate_no);
-   // console.log(id, "hhhh");
+    // console.log(id, "hhhh");
     axios
       .post(`${apiUrl}/studentData/entry`, formData)
       .then((res) => {
-        localStorage.setItem("id", res.data.id);
-        //console.log(res.dataid);
+        axios
+          .put(`${apiUrl}/studentData/generation/${res.data.id}`,console.log(res.data.id))
+          .then((res) => {
+            console.log(res.data,"UPLOADED SUCCESSFULLY....");
+          })
+          .catch((err) => {
+            console.log(err, "error posting");
+          });
       })
       .catch((err) => console.log(err, "error posting"));
   };
   const id = localStorage.getItem("id");
   console.log("id", id);
- 
 
   return (
     <>

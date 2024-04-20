@@ -11,9 +11,9 @@ const creation = async (req, res) => {
 };
 
 const certificateGeneration = async (req, res) => {
-  let name = await StudentServices.PdfGen(req);
-  if (name != null) {
-    res.status(201).send(name);
+  let data = await StudentServices.PdfGen(req);
+  if (data != null) {
+    res.status(201).send(data);
   } else {
     res.status(401).send({ message: "user not found" });
   }

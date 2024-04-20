@@ -27,6 +27,15 @@ export function Table() {
     setFilterData(filtered);
   };
 
+  const downloadPdf = () => {
+    window.location.href = `${url}/`
+    return (
+      <>
+      <span onClick={downloadPdf} className="bg-pink-700 p-2 text-white">View Certificate</span>
+      </>
+    )
+  }
+
   return (
     <>
       <section>
