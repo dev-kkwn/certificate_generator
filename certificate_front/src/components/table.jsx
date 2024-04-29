@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import { FaTrash } from "react-icons/fa";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { Document, Page } from "react-pdf";
 
 export function Table() {
   const [data, setData] = useState([]);
   const [filterData, setFilterData] = useState([]);
+  // const [pdfUrl, SetPdfUrl] = useState("");
 
   const url = process.env.REACT_APP_API_URL;
 
@@ -15,9 +17,13 @@ export function Table() {
       .then((res) => {
         setData(res.data);
         setFilterData(res.data); // Set filterData initially with fetched data
+        //  let file=res.data.profile
+        // console.log(data.profile);
       })
       .catch((err) => console.log("error fetching", err));
   }, []);
+
+  let file = data.profile;
 
   const filteredData = (e) => {
     const searchItem = e.target.value.toLowerCase();
@@ -27,14 +33,39 @@ export function Table() {
     setFilterData(filtered);
   };
 
-  const downloadPdf = () => {
-    window.location.href = `${url}/`
+  const PDFViewer = () => {
+    const pdfURL = `${file}`;
+    console.log("working");
     return (
-      <>
-      <span onClick={downloadPdf} className="bg-pink-700 p-2 text-white">View Certificate</span>
-      </>
-    )
-  }
+      <div>
+        <Document file={pdfURL}>
+          <Page pageNumber={1} />
+        </Document>
+      </div>
+    );
+  };
+  // const viewCertificate = (certificateId) => {
+  //   window.open(`${url}/certificate/${certificateId}`, "_blank");
+  // };
+
+  // const downloadPdf = () => {
+  //   window.location.href = `${url}/`
+  // }
+
+  // const srcPath = data.profile;
+
+  // const viewCertificate = async (certificateno) => {
+  //   try {
+  //     const response = await axios.get(`${url}/certificate/${certificateno}`, {
+  //       responseType: "blob", // Response type set to blob
+  //     });
+  //     const pdfBlob = new Blob([response.data], { type: "application/pdf" });
+  //     const pdfUrl = URL.createObjectURL(pdfBlob);
+  //     SetPdfUrl(pdfUrl);
+  //   } catch (error) {
+  //     console.error("Error fetching PDF:", error);
+  //   }
+  // };
 
   return (
     <>
@@ -45,7 +76,7 @@ export function Table() {
               <input
                 type="text"
                 name="filtername"
-                onChange={filteredData} // onChange with capital "C"
+                onChange={filteredData} 
                 placeholder="Search by Name"
                 className="border border-black p-1 rounded-lg my-5"
               />
@@ -98,7 +129,10 @@ export function Table() {
                         {d.certificate_no}
                       </td>
                       <td className="border border-black p-4">
-                        <span className="bg-pink-700 p-2 text-white">
+                        <span
+                          className="bg-pink-700 p-2 text-white"
+                          onClick={PDFViewer}
+                        >
                           <Link to="">View Certificate</Link>
                         </span>
                       </td>
@@ -115,6 +149,7 @@ export function Table() {
           </div>
         </div>
       </section>
+   
     </>
   );
 }
